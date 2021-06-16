@@ -25,7 +25,7 @@ urlpatterns = [
     path('influencer/<int:pk>/', influencer_views.InfluencerDetails.as_view()),
     path('brands/', brand_views.BrandList.as_view()),
     path('brand/<int:pk>/', brand_views.BrandDetails.as_view()),
-    #path('adcard/')
+    #path('adcard/y')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
