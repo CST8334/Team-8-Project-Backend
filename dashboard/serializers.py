@@ -31,6 +31,7 @@ class BrandSerializer(serializers.ModelSerializer):
         ]
 
 
+# TODO: add influencer youtube channels to the influencer serializer
 class InfluencerYoutubeChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfluencerYoutubeChannel

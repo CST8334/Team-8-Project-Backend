@@ -18,6 +18,7 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from dashboard.views import brand_views
 from dashboard.views import influencer_views
+from dashboard.views import ad_card_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +26,8 @@ urlpatterns = [
     path('influencer/<int:pk>/', influencer_views.InfluencerDetails.as_view()),
     path('brands/', brand_views.BrandList.as_view()),
     path('brand/<int:pk>/', brand_views.BrandDetails.as_view()),
-    #path('adcard/y')
+    path('adcards/', ad_card_views.AdCardList.as_view()),
+    path('adcard/<int:pk>', ad_card_views.AdCardDetails.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
