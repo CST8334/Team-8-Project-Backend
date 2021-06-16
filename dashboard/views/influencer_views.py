@@ -10,12 +10,11 @@ class InfluencerDetails(APIView):
     """
     Retrieve an influencer instance
     """
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_object(self, pk, ):
         try:
             influencer_obj = Influencer.objects.get(pk=pk)
-            #self.check_object_permissions(self.request, influencer_obj)
             return influencer_obj
         except Influencer.DoesNotExist:
             raise Http404
