@@ -2,14 +2,14 @@ from django.db import models
 
 
 # Create your models here.
-class Influencer(models.Model):
-    influencer_name = models.CharField(max_length=255)
-    influencer_age = models.IntegerField()
-    influencer_location = models.CharField(max_length=255)
-    influencer_date_joined = models.DateField(auto_now_add=True)
+class Creator(models.Model):
+    creator_name = models.CharField(max_length=255)
+    creator_age = models.IntegerField()
+    creator_location = models.CharField(max_length=255)
+    creator_date_joined = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.influencer_name
+        return self.creator_name
 
 
 class Brand(models.Model):
@@ -23,12 +23,12 @@ class Brand(models.Model):
         return self.brand_company_name
 
 
-class InfluencerYoutubeChannel(models.Model):
-    influencer_channel_name = models.CharField(max_length=255)
-    influencer_id = models.ForeignKey(Influencer, on_delete=models.CASCADE)
+class CreatorYoutubeChannel(models.Model):
+    creator_channel_name = models.CharField(max_length=255)
+    creator_id = models.ForeignKey(Creator, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.influencer_channel_name
+        return self.creator_channel_name
 
 
 class AdCard(models.Model):
@@ -41,9 +41,9 @@ class AdCard(models.Model):
         return self.ad_title
 
 
-class InfluencerAdCard(models.Model):
-    influencer_id = models.ForeignKey(Influencer, on_delete=models.CASCADE)
+class CreatorAdCard(models.Model):
+    creator_id = models.ForeignKey(Creator, on_delete=models.CASCADE)
     ad_card_id = models.ForeignKey(AdCard, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.influencer_id
+        return self.creator_id

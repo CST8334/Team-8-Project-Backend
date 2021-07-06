@@ -12,14 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Influencer',
+            name='Creator',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('influencer_name', models.CharField(max_length=255)),
-                ('influencer_age', models.IntegerField()),
-                ('influencer_location', models.CharField(max_length=255)),
-                ('influencer_youtubechannel', models.CharField(max_length=255)),
-                ('influencer_date_joined', models.DateField(auto_now_add=True)),
+                ('creator_name', models.CharField(max_length=255)),
+                ('creator_age', models.IntegerField()),
+                ('creator_location', models.CharField(max_length=255)),
+                ('creator_youtubechannel', models.CharField(max_length=255)),
+                ('creator_date_joined', models.DateField(auto_now_add=True)),
             ],
         ),
     ]

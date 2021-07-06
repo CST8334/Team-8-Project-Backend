@@ -32,4 +32,4 @@ class AdCardList(APIView):
         ad_card_serializer = AdCardSerializer(ad_card, many=True)
         return Response(ad_card_serializer.data)
 
-    # TODO: add a create influencer function
+    # TODO: add a create creator function

@@ -1,20 +1,20 @@
 from rest_framework import serializers
-from .models import Influencer
+from .models import Creator
 from .models import Brand
-from .models import InfluencerYoutubeChannel
+from .models import CreatorYoutubeChannel
 from .models import AdCard
-from .models import InfluencerAdCard
+from .models import CreatorAdCard
 
 
-class InfluencerSerializer(serializers.ModelSerializer):
+class CreatorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Influencer
+        model = Creator
         fields = [
             'pk',
-            'influencer_name',
-            'influencer_age',
-            'influencer_location',
-            'influencer_date_joined',
+            'creator_name',
+            'creator_age',
+            'creator_location',
+            'creator_date_joined',
         ]
 
 
@@ -31,14 +31,14 @@ class BrandSerializer(serializers.ModelSerializer):
         ]
 
 
-# TODO: add influencer youtube channels to the influencer serializer
-class InfluencerYoutubeChannelSerializer(serializers.ModelSerializer):
+# TODO: add creator youtube channels to the creator serializer
+class CreatorYoutubeChannelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InfluencerYoutubeChannel
+        model = CreatorYoutubeChannel
         fields = [
             'pk',
-            'influencer_channel_name',
-            'influencer_id',
+            'creator_channel_name',
+            'creator_id',
         ]
 
 
@@ -54,10 +54,10 @@ class AdCardSerializer(serializers.ModelSerializer):
         ]
 
 
-class InfluencerAdCardSerializer(serializers.ModelSerializer):
+class CreatorAdCardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = InfluencerAdCard
+        model = CreatorAdCard
         fields = [
-            'influencer_id',
+            'creator_id',
             'ad_card_id',
         ]
