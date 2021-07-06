@@ -12,13 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='influenceradcard',
+            model_name='creatoradcard',
             name='ad_card_id',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dashboard.adcard'),
         ),
         migrations.AlterField(
-            model_name='influenceradcard',
-            name='influencer_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dashboard.influencer'),
+            model_name='creatoradcard',
+            name='creator_id',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dashboard.creator'),
         ),
     ]

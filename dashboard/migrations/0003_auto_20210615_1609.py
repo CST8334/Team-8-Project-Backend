@@ -22,23 +22,23 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.RemoveField(
-            model_name='influencer',
-            name='influencer_youtubechannel',
+            model_name='creator',
+            name='creator_youtubechannel',
         ),
         migrations.CreateModel(
-            name='InfluencerYoutubeChannel',
+            name='CreatorYoutubeChannel',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('influencer_channel_name', models.CharField(max_length=255)),
-                ('influencer_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dashboard.influencer')),
+                ('creator_channel_name', models.CharField(max_length=255)),
+                ('creator_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dashboard.creator')),
             ],
         ),
         migrations.CreateModel(
-            name='InfluencerAdCard',
+            name='CreatorAdCard',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('ad_card_id', models.ForeignKey(on_delete=models.SET(0), to='dashboard.adcard')),
-                ('influencer_id', models.ForeignKey(on_delete=models.SET(0), to='dashboard.influencer')),
+                ('creator_id', models.ForeignKey(on_delete=models.SET(0), to='dashboard.creator')),
             ],
         ),
     ]

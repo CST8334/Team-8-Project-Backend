@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from dashboard.views import brand_views
-from dashboard.views import influencer_views
+from dashboard.views import creator_views
 from dashboard.views import ad_card_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('influencers/', influencer_views.InfluencerList.as_view()),
-    path('influencer/<int:pk>/', influencer_views.InfluencerDetails.as_view()),
+    path('creators/', creator_views.CreatorList.as_view()),
+    path('creator/<int:pk>/', creator_views.CreatorDetails.as_view()),
     path('brands/', brand_views.BrandList.as_view()),
     path('brand/<int:pk>/', brand_views.BrandDetails.as_view()),
     path('adcards/', ad_card_views.AdCardList.as_view()),
