@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'dashboard.apps.DashboardConfig',
+    'Models.Brand',
+    'Models.Creator',
+    'Models.Users',
+    'Models.Organization',
     'corsheaders',
 ]
 
