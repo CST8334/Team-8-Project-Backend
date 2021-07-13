@@ -10,7 +10,7 @@ There is no risk of harm running the command a second time, a message that it is
 
 Before running the server for the first time run.
 
-"python manage.py migrate" - There should be nothing to migrate.
+"python manage.py migrate"
 
 Finally start the server.
 
