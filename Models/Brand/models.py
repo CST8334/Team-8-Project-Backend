@@ -5,12 +5,14 @@ from Models.Users.models import Users
 
 class BrandOrganization(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True)
+    description = models.TextField()
 
 
 class BrandCampaign(models.Model):
     state = models.CharField(max_length=255)
     creation_time = models.DateTimeField(auto_now_add=True)
     completion_time = models.DateTimeField()
+    description = models.TextField()
 
 
 class BrandAdCard(models.Model):
@@ -27,3 +29,4 @@ class BrandAdCard(models.Model):
     brand_user_id = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, related_name='b_user_fk') # foreign key from Users
     creator_user_id = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_b_ad_fk') # foreign key from Users
     brand_organization_id = models.ForeignKey(BrandOrganization, on_delete=models.CASCADE, related_name='b_org_id') # foreign key from BrandOrganization
+    description = models.TextField()

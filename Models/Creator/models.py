@@ -27,6 +27,7 @@ class CreatorCampaign(models.Model):
     state = models.CharField(max_length=255, null=False)
     creation_time = models.DateField(auto_now_add=True)
     completion_time = models.DateField()
+    description = models.TextField()
 
 
 class CreatorAdCard(models.Model):
@@ -42,3 +43,4 @@ class CreatorAdCard(models.Model):
     dreamwell_approval_time = models.DateField()
     dreamwell_rejection_time = models.DateField()
     completion_time = models.IntegerField(null=False)
+    description = models.TextField()
