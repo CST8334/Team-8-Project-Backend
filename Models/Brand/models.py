@@ -16,8 +16,8 @@ class BrandCampaign(models.Model):
 
 
 class BrandAdCard(models.Model):
-    creator_campaign_id = models.ForeignKey(CreatorCampaign, on_delete=models.CASCADE, related_name='c_campaign_fk') # Foreign key to CreatorCampaign
-    brand_campaign_id = models.ForeignKey(BrandCampaign, on_delete=models.CASCADE, related_name='b_campaign_fk') # Foreign key to BrandCampaign
+    creator_campaign = models.ForeignKey(CreatorCampaign, on_delete=models.CASCADE, related_name='c_campaign_fk') # Foreign key to CreatorCampaign
+    brand_campaign = models.ForeignKey(BrandCampaign, on_delete=models.CASCADE, related_name='b_campaign_fk') # Foreign key to BrandCampaign
     state = models.CharField(max_length=255, null=False)
     price = models.FloatField()
     platform = models.CharField(max_length=255, null=False)
@@ -26,7 +26,7 @@ class BrandAdCard(models.Model):
     dreamwell_approval_time = models.DateField()
     dreamwell_rejection_time = models.DateField()
     completion_time = models.DateField()
-    brand_user_id = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, related_name='b_user_fk') # foreign key from Users
-    creator_user_id = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_b_ad_fk') # foreign key from Users
-    brand_organization_id = models.ForeignKey(BrandOrganization, on_delete=models.CASCADE, related_name='b_org_id') # foreign key from BrandOrganization
+    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, related_name='b_user_fk') # foreign key from Users
+    creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_b_ad_fk') # foreign key from Users
+    brand_organization = models.ForeignKey(BrandOrganization, on_delete=models.CASCADE, related_name='b_org_id') # foreign key from BrandOrganization
     description = models.TextField()
