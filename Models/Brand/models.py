@@ -23,10 +23,10 @@ class BrandAdCard(models.Model):
     platform = models.CharField(max_length=255, null=False)
     execution_deadline = models.DateField()
     creation_time = models.DateField(auto_now_add=True)
-    dreamwell_approval_time = models.DateField()
-    dreamwell_rejection_time = models.DateField()
+    dreamwell_approval_time = models.DateField(null=True)
+    dreamwell_rejection_time = models.DateField(null=True)
     completion_time = models.DateField()
     brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, related_name='b_user_fk') # foreign key from Users
-    creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_b_ad_fk') # foreign key from Users
+    creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, related_name='c_user_b_ad_fk') # foreign key from Users
     brand_organization = models.ForeignKey(BrandOrganization, on_delete=models.CASCADE, related_name='b_org_id') # foreign key from BrandOrganization
     description = models.TextField()

@@ -26,7 +26,7 @@ class CreatorCampaign(models.Model):
 
 class CreatorAdCard(models.Model):
     creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_id_fk') # Foreign key from users
-    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='b_user_id_fk') # Foreign key from users
+    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, related_name='b_user_id_fk') # Foreign key from users
     brand_campaign = models.ForeignKey('Brand.BrandCampaign', on_delete=models.CASCADE, related_name='b_camp_id_fk') # Foreign key from BrandCampaign
     creator_campaign = models.ForeignKey(CreatorCampaign, on_delete=models.CASCADE, related_name='c_camp_id_fk') # Foreign key from CreatorCampaign
     state = models.CharField(max_length=255, null=False)
@@ -34,7 +34,7 @@ class CreatorAdCard(models.Model):
     platform = models.CharField(max_length=255, null=False)
     execution_deadline = models.DateField()
     creation_time = models.DateField(auto_now_add=True)
-    dreamwell_approval_time = models.DateField()
-    dreamwell_rejection_time = models.DateField()
+    dreamwell_approval_time = models.DateField(null=True)
+    dreamwell_rejection_time = models.DateField(null=True)
     completion_time = models.IntegerField(null=False)
     description = models.TextField()
