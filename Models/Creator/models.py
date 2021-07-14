@@ -26,15 +26,15 @@ class CreatorCampaign(models.Model):
 
 class CreatorAdCard(models.Model):
     creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_id_fk') # Foreign key from users
-    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='b_user_id_fk') # Foreign key from users
-    brand_campaign = models.ForeignKey('Brand.BrandCampaign', on_delete=models.CASCADE, related_name='b_camp_id_fk') # Foreign key from BrandCampaign
+    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, blank=True, null=True, related_name='b_user_id_fk') # Foreign key from users
+    brand_campaign = models.ForeignKey('Brand.BrandCampaign', on_delete=models.CASCADE, blank=True, null=True, related_name='b_camp_id_fk') # Foreign key from BrandCampaign
     creator_campaign = models.ForeignKey(CreatorCampaign, on_delete=models.CASCADE, related_name='c_camp_id_fk') # Foreign key from CreatorCampaign
     state = models.CharField(max_length=255, null=False)
     price = models.FloatField()
     platform = models.CharField(max_length=255, null=False)
     execution_deadline = models.DateField()
     creation_time = models.DateField(auto_now_add=True)
-    dreamwell_approval_time = models.DateField()
-    dreamwell_rejection_time = models.DateField()
-    completion_time = models.IntegerField(null=False)
+    dreamwell_approval_time = models.DateField(null=True, blank=True)
+    dreamwell_rejection_time = models.DateField(null=True, blank=True)
+    completion_time = models.DateField(null=True, blank=True)
     description = models.TextField()
