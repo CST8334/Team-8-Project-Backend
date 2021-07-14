@@ -20,16 +20,18 @@ from dashboard.views import brand_views
 #from dashboard.views import creator_views
 from dashboard.views import ad_card_views
 from Views.Creator import creator_views
+from Views.Brand import brand_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('creators/', creator_views.CreatorList.as_view()),
     #path('creator/<int:pk>/', creator_views.CreatorDetails.as_view()),
     path('new-creator/', creator_views.NewCreator.as_view()),
-    path('brands/', brand_views.BrandList.as_view()),
-    path('brand/<int:pk>/', brand_views.BrandDetails.as_view()),
-    path('adcards/', ad_card_views.AdCardList.as_view()),
-    path('adcard/<int:pk>', ad_card_views.AdCardDetails.as_view()),
+    path('new-brand-card/', brand_views.BrandAdCards.as_view()),
+    #path('brands/', brand_views.BrandList.as_view()),
+    #path('brand/<int:pk>/', brand_views.BrandDetails.as_view()),
+    #path('adcards/', ad_card_views.AdCardList.as_view()),
+    #path('adcard/<int:pk>', ad_card_views.AdCardDetails.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -11,7 +11,7 @@ class BrandOrganization(models.Model):
 class BrandCampaign(models.Model):
     state = models.CharField(max_length=255)
     creation_time = models.DateTimeField(auto_now_add=True)
-    completion_time = models.DateTimeField()
+    completion_time = models.DateTimeField(null=True, blank=True)
     description = models.TextField()
 
 
