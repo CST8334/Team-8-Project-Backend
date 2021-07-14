@@ -9,18 +9,12 @@ class CreatorProductRequest(models.Model):
     request_type = models.fields.CharField(max_length=255, null=False)
     creation_time = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return self.creator_user_id
-
 
 class CreatorReferralInvitation(models.Model):
     inviting_creator = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_invite_fk')  # Foreign key from Users table
     invitee_creator = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_invitee_fk') # Foreign key from Users table
     invitee_creator_email = models.CharField(max_length=255, null=False, blank=False)
     creation_time = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.inviting_creator_id + self.invitee_creator_id
 
 
 class CreatorCampaign(models.Model):
