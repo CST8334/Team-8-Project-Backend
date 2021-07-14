@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
 
 class Users(models.Model):
@@ -9,3 +10,7 @@ class Users(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True)
     user_role = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField()
+
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super(Users, self).save(*args, **kwargs)
