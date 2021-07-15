@@ -10,6 +10,13 @@ class Users(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True)
     user_role = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField()
+#Claudio - new fields to include social media platform data - July 15, 2021
+    googleId = models.TextField()
+    googleName = models.TextField()
+    googleEmail = models.TextField()
+    instagramId = models.TextField()
+    instagramUser = models.TextField()
+    instagramName = models.TextField()
 
     def save(self, *args, **kwargs):
         self.password = make_password(self.password)
