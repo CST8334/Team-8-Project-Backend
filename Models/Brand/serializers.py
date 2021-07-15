@@ -31,8 +31,6 @@ class BrandAdCardSerializer(serializers.ModelSerializer):
         model = BrandAdCard
         fields = [
             'pk',
-            'creator_campaign_id',
-            'brand_campaign_id',
             'state',
             'price',
             'platform',
@@ -41,8 +39,10 @@ class BrandAdCardSerializer(serializers.ModelSerializer):
             'dreamwell_approval_time',
             'dreamwell_rejection_time',
             'completion_time',
-            'brand_user_id',
-            'creator_user_id',
-            'brand_organization_id',
-            'description'
+            'description',
+            'brand_organization',
+            'brand_user',
+            'creator_campaign',
+            'creator_user',
+            'brand_campaign'
         ]
