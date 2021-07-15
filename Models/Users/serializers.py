@@ -13,5 +13,11 @@ class UserSerializer(serializers.ModelSerializer):
             'organization_id',
             'creation_time',
             'user_role',
-            'description'
+            'description',
+            'googleId',
+            'googleName',
+            'googleEmail',
+            'instagramId',
+            'instagramUser',
+            'instagramName'
         ]
