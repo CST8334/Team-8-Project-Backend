@@ -28,6 +28,7 @@ urlpatterns = [
     #path('creator/<int:pk>/', creator_views.CreatorDetails.as_view()),
     path('new-creator/', creator_views.NewCreator.as_view()),
     path('new-brand-card/', brand_views.BrandAdCards.as_view()),
+    path('brand-ad-cards/', brand_views.BrandAdCardsList.as_view()),
     #path('brands/', brand_views.BrandList.as_view()),
     #path('brand/<int:pk>/', brand_views.BrandDetails.as_view()),
     #path('adcards/', ad_card_views.AdCardList.as_view()),
