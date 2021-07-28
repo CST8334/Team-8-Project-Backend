@@ -22,6 +22,9 @@ from Views.Brand import brand_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('creator/<int:pk>/', creator_views.CreatorDetails.as_view()),
+    path('creator-ad-card/new', creator_views.CreatorMarketplace.as_view()),
+    path('creator-ad-card/<int:creator_user_id>', creator_views.CreatorMarketplace.as_view()),
+    path('creator-ad-card/<int:pk>/delete', creator_views.CreatorMarketplace.as_view()),
     path('new-creator/', creator_views.NewCreator.as_view()),
     path('new-brand-card/', brand_views.BrandAdCards.as_view()),
     path('brand-ad-cards/', brand_views.BrandAdCardsList.as_view()),

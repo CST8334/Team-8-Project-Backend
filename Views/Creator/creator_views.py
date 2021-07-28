@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from Models.Creator.serializers import *
 from Models.Users.serializers import *
+from django.http import response
 from django.core import serializers
 
 
@@ -16,16 +17,28 @@ class CreatorMarketplace(APIView):
 
     def get_creator_ad_card(self, creator_user_id):
         try:
-            creator_ad_card = CreatorAdCard.objects.get(creator_user_id=creator_user_id)
+            creator_ad_card = CreatorAdCard.objects.get(creator_user_id=creator_user_id, many=True)
             return creator_ad_card
         except CreatorAdCard.DoesNotExist:
             raise Http404
 
     def get(self, request, creator_user_id):
-        creator_ad = self.get_object(creator_user_id)
+        creator_ad = self.get_creator_ad_card(creator_user_id)
         #ad_cards = creator_ad.b_user_id_fk.all()
         serializer = CreatorAdCardSerializer(creator_ad)
         return Response(serializer.data)
+
+    def post(self, request, format=None):
+        creator_ad_serializer = CreatorAdCardSerializer(data=request.data)
+        if creator_ad_serializer.is_valid():
+            creator_ad_serializer.save()
+            return Response(creator_ad_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(creator_ad_serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        creator_ad = CreatorAdCard.objects.get(pk=pk)
+        creator_ad.delete()
+        return response.HttpResponse()
 
 
 class CreatorProfile(APIView):

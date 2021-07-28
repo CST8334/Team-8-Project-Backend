@@ -45,10 +45,10 @@ class CreatorAdCardSerializer(serializers.ModelSerializer):
         model = CreatorAdCard
         fields = [
             'pk',
-            'creator_user_id',
-            'brand_user_id',
-            'brand_campaign_id',
-            'creator_campaign_id',
+            'creator_user',
+            'brand_user',
+            'brand_campaign',
+            'creator_campaign',
             'state',
             'price',
             'platform',
