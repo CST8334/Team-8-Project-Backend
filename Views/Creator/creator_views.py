@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from Models.Creator.serializers import *
 from Models.Users.serializers import *
+from django.core import serializers
 
 
 class CreatorMarketplace(APIView):
@@ -55,6 +56,9 @@ class NewCreator(APIView):
     def post(self, request, format=None):
         creator_user_serializer = UserSerializer(data=request.data)
         if creator_user_serializer.is_valid():
-            creator_user_serializer.save()
-            return Response(creator_user_serializer.data, status=status.HTTP_201_CREATED)
+            creator_email = creator_user_serializer.validated_data['email']
+            if not Users.objects.filter(email=creator_email).exists():
+                creator_user_serializer.save()
+                return Response(creator_user_serializer.data, status=status.HTTP_201_CREATED)
+            return Response(creator_user_serializer.errors, status=status.HTTP_409_CONFLICT)
         return Response(creator_user_serializer.errors, status.HTTP_400_BAD_REQUEST)
