@@ -28,6 +28,7 @@ urlpatterns = [
     path('new-creator/', creator_views.NewCreator.as_view()),
     path('new-brand-card/', brand_views.BrandAdCards.as_view()),
     path('brand-ad-cards/', brand_views.BrandAdCardsList.as_view()),
+    path('login/', creator_views.LoginCreator.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
