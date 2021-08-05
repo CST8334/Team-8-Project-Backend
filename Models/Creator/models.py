@@ -1,18 +1,18 @@
 from django.db import models
-from Models.Users.models import Users
+from Users.models import CustomUser
 # from django.apps import apps
 # apps.get_model('Brand.')
 
 
 class CreatorProductRequest(models.Model):
-    creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_fk')  # Foreign key of users table primary key
+    creator_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='c_user_fk')  # Foreign key of users table primary key
     request_type = models.fields.CharField(max_length=255, null=False)
     creation_time = models.DateField(auto_now_add=True)
 
 
 class CreatorReferralInvitation(models.Model):
-    inviting_creator = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_invite_fk')  # Foreign key from Users table
-    invitee_creator = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_invitee_fk') # Foreign key from Users table
+    inviting_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='c_invite_fk')  # Foreign key from Users table
+    invitee_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='c_invitee_fk') # Foreign key from Users table
     invitee_creator_email = models.CharField(max_length=255, null=False, blank=False)
     creation_time = models.DateField(auto_now_add=True)
 
@@ -25,8 +25,8 @@ class CreatorCampaign(models.Model):
 
 
 class CreatorAdCard(models.Model):
-    creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='c_user_id_fk') # Foreign key from users
-    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, blank=True, null=True, related_name='b_user_id_fk') # Foreign key from users
+    creator_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='c_user_id_fk') # Foreign key from users
+    brand_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True, null=True, related_name='b_user_id_fk') # Foreign key from users
     brand_campaign = models.ForeignKey('Brand.BrandCampaign', on_delete=models.CASCADE, blank=True, null=True, related_name='b_camp_id_fk') # Foreign key from BrandCampaign
     creator_campaign = models.ForeignKey(CreatorCampaign, on_delete=models.CASCADE, related_name='c_camp_id_fk') # Foreign key from CreatorCampaign
     state = models.CharField(max_length=255, null=False)

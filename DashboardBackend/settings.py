@@ -39,14 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'dashboard.apps.DashboardConfig',
+    #'dashboard.apps.DashboardConfig',
     'Models.Brand',
     'Models.Creator',
-    'Models.Users',
     'Models.Organization',
     'Views.Brand.apps.BrandViewsConfig',
     'Views.Creator.apps.CreatorViewsConfig',
     'corsheaders',
+    'Users.apps.UsersConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -54,6 +54,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+AUTH_USER_MODEL = 'Users.CustomUser'
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

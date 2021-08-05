@@ -3,10 +3,12 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from Models.Creator.serializers import *
-from Models.Users.serializers import *
+from Users.serializers import UserSerializer
+from Users.models import CustomUser
+from Users.models import UserInvitation
 from django.http import response
-from django.contrib.auth.hashers import check_password
-from django.core import serializers
+import uuid
+from rest_framework.authtoken.models import Token
 
 
 class CreatorMarketplace(APIView):
@@ -145,15 +147,26 @@ class CreatorProfile(APIView):
 
     def get_creator_profile(self, creator_user_id):
         try:
-            creator_user = Users.objects.get(creator_user_id=creator_user_id)
+            creator_user = CustomUser.objects.get(pk=creator_user_id)
             return creator_user
-        except Users.DoesNotExist:
+        except CustomUser.DoesNotExist:
             raise Http404
 
-    def get(self, request, creator_user_id):
-        creator = self.get_objects(creator_user_id)
+    def get(self, request, pk):
+        creator = self.get_creator_profile(pk)
         serializer = UserSerializer(creator)
         return Response(serializer.data)
+
+
+class CreateInvitationCode(APIView):
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        invitation_code = uuid.uuid4().hex
+        new_code = UserInvitation(invitation_code=invitation_code)
+        new_code.save()
+        content = {'invitation_code': invitation_code}
+        return Response(content, status=status.HTTP_200_OK)
 
 
 class NewCreator(APIView):
@@ -162,35 +175,44 @@ class NewCreator(APIView):
     """
     permissions = [permissions.AllowAny]
 
-    def post(self, request, format=None):
+    def post(self, request, invitation_code, format=None):
         creator_user_serializer = UserSerializer(data=request.data)
         if creator_user_serializer.is_valid():
+            invitation = UserInvitation.objects.get(invitation_code=invitation_code)
+            if getattr(invitation, 'is_used'):
+                invalid_invitation = {'error_message': 'invitation code has already been used'}
+                return Response(invalid_invitation, status=status.HTTP_409_CONFLICT)
             creator_email = creator_user_serializer.validated_data['email']
-            if not Users.objects.filter(email=creator_email).exists():
-                creator_user_serializer.save()
-                return Response(creator_user_serializer.data, status=status.HTTP_201_CREATED)
-            return Response(creator_user_serializer.errors, status=status.HTTP_409_CONFLICT)
+            if not CustomUser.objects.filter(email=creator_email).exists():
+                account = creator_user_serializer.save()
+                token = Token.objects.get(user=account).key
+                content = {'email': creator_email, 'token': token}
+                invitation.is_used = True
+                invitation.save()
+                return Response(content, status=status.HTTP_201_CREATED)
+            invalid_email = {'error_message': 'This email is already registered'}
+            return Response(invalid_email, status=status.HTTP_409_CONFLICT)
         return Response(creator_user_serializer.errors, status.HTTP_400_BAD_REQUEST)
 
 
-class LoginCreator(APIView):
-    """
-    Checks if given email + password exist
-    """
-    permissions = [permissions.AllowAny]
-
-    def post(self, request, format=None):
-        creator_user_serializer = UserSerializer(data=request.data)
-        if creator_user_serializer.is_valid():
-            creator_email = creator_user_serializer.validated_data['email']
-            # If the email exists, then compare the password
-            if Users.objects.filter(email=creator_email).exists():
-                login_user = Users.objects.get(email=creator_email)
-                login_user_password = getattr(login_user, 'password')
-                creator_password = creator_user_serializer.validated_data['password']
-                if check_password(creator_password, login_user_password):
-                    # If login is successful, return a token
-                    content = {'email': creator_email}
-                    return Response(content, status=status.HTTP_200_OK)
-            return Response(creator_user_serializer.errors, status=status.HTTP_409_CONFLICT)
-        return Response(creator_user_serializer.errors, status.HTTP_400_BAD_REQUEST)
+# class LoginCreator(APIView):
+#     """
+#     Checks if given email + password exist
+#     """
+#     permissions = [permissions.AllowAny]
+#
+#     def post(self, request, format=None):
+#         creator_user_serializer = UserSerializer(data=request.data)
+#         if creator_user_serializer.is_valid():
+#             creator_email = creator_user_serializer.validated_data['email']
+#             # If the email exists, then compare the password
+#             if Users.objects.filter(email=creator_email).exists():
+#                 login_user = Users.objects.get(email=creator_email)
+#                 login_user_password = getattr(login_user, 'password')
+#                 creator_password = creator_user_serializer.validated_data['password']
+#                 if check_password(creator_password, login_user_password):
+#                     # If login is successful, return a token
+#                     content = {'email': creator_email}
+#                     return Response(content, status=status.HTTP_200_OK)
+#             return Response(creator_user_serializer.errors, status=status.HTTP_409_CONFLICT)
+#         return Response(creator_user_serializer.errors, status.HTTP_400_BAD_REQUEST)
