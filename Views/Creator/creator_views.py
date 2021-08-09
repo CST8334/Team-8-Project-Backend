@@ -182,9 +182,11 @@ class NewCreator(APIView):
             if getattr(invitation, 'is_used'):
                 invalid_invitation = {'error_message': 'invitation code has already been used'}
                 return Response(invalid_invitation, status=status.HTTP_409_CONFLICT)
+            # add any other additional fields that are required to be stored on an account when a user first signs up. Ex: an organization id.
             creator_email = creator_user_serializer.validated_data['email']
+            creator_pass = creator_user_serializer.validated_data['password']
             if not CustomUser.objects.filter(email=creator_email).exists():
-                account = creator_user_serializer.save()
+                account = CustomUser.objects.create_user(email=creator_email, password=creator_pass)
                 token = Token.objects.get(user=account).key
                 content = {'email': creator_email, 'token': token}
                 invitation.is_used = True
