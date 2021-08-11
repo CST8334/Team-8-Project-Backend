@@ -6,7 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from .managers import CustomUserManager
-from django.contrib.auth.hashers import make_password
 
 
 class CustomUser(AbstractUser):
@@ -23,6 +22,8 @@ class CustomUser(AbstractUser):
     instagramId = models.CharField(max_length=255, null=True, blank=True)
     instagramUser = models.CharField(max_length=255, null=True, blank=True)
     instagramName = models.CharField(max_length=255, null=True, blank=True)
+    tiktokId = models.CharField(max_length=255, null=True, blank=True)
+    tiktokEmail = models.CharField(max_length=255, null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -32,15 +33,11 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
-    # def save(self, *args, **kwargs):
-    #     self.password = make_password(self.password)
-    #     super(CustomUser, self).save(*args, **kwargs)
 
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        Token.objects.create(user=instance)
+    @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+    def create_auth_token(sender, instance=None, created=False, **kwargs):
+        if created:
+            Token.objects.create(user=instance)
 
 
 class UserInvitation(models.Model):

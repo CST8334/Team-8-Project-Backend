@@ -7,7 +7,7 @@ class OrganizationMembershipSerializer(serializers.ModelSerializer):
         model = OrganizationMembership
         fields = [
             'pk',
-            'user_id',
-            'organization_id',
+            'user',
+            'organization',
             'description',
         ]

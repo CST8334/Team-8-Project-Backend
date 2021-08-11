@@ -16,12 +16,13 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     ordering = ('email',)
     list_display = ('email', 'user_type', 'organization_id', 'user_role', 'description', 'creation_time', 'googleId',
-                    'googleName', 'googleEmail', 'instagramId', 'instagramUser', 'instagramName', 'is_staff',
-                    'is_superuser', 'is_active')
+                    'googleName', 'googleEmail', 'instagramId', 'instagramUser', 'instagramName', 'tiktokId',
+                    'tiktokEmail', 'is_staff', 'is_superuser', 'is_active')
     fieldsets = (
         (None, {
             'fields': ('email', 'password', 'user_type', 'organization_id', 'user_role', 'description', 'googleId',
-                       'googleName', 'googleEmail', 'instagramId', 'instagramUser', 'instagramName')
+                       'googleName', 'googleEmail', 'instagramId', 'instagramUser', 'instagramName', 'tiktokId',
+                       'tiktokEmail')
         }),
     )
 

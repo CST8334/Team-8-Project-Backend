@@ -19,5 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
             'googleEmail',
             'instagramId',
             'instagramUser',
-            'instagramName'
+            'instagramName',
+            'tiktokId',
+            'tiktokEmail'
         ]

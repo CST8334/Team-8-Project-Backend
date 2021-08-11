@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'Models.Organization',
     'Views.Brand.apps.BrandViewsConfig',
     'Views.Creator.apps.CreatorViewsConfig',
+    'Views.Organization.apps.OrganizationViewsConfig',
     'corsheaders',
     'Users.apps.UsersConfig',
 ]

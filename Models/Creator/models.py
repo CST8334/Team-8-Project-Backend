@@ -1,7 +1,5 @@
 from django.db import models
 from Users.models import CustomUser
-# from django.apps import apps
-# apps.get_model('Brand.')
 
 
 class CreatorProductRequest(models.Model):
