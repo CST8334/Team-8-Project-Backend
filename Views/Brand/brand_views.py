@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from Models.Brand.serializers import *
 from Models.Brand.models import *
-from Models.Users.serializers import UserSerializer
+from Users.serializers import UserSerializer
 
 """ 
 File name: brand_views.py
@@ -43,13 +43,12 @@ class BrandAdCardsList(APIView):
 class CreatorMarketplace(APIView):
     """
     Returns an instance of brand-ad-card
-    TODO: Add "state =" as another search parameter
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_brand_ad_card(self, brand_user_id):
         try:
-            brand_ad_card = BrandAdCard.objects.get(brand_user_id=brand_user_id, many=True)
+            brand_ad_card = BrandAdCard.objects.get(brand_user=brand_user_id, many=True)
             return brand_ad_card
         except BrandAdCard.DoesNotExist:
             raise Http404
@@ -79,9 +78,9 @@ class BrandProfile(APIView):
 
     def get_brand_profile(self, brand_user_id):
         try:
-            brand_user = Users.objects.get(brand_user_id=brand_user_id)
+            brand_user = CustomUser.objects.get(brand_user=brand_user_id)
             return brand_user
-        except Users.DoesNotExist:
+        except CustomUser.DoesNotExist:
             raise Http404
 
     def get(self, request, brand_user_id):
@@ -100,7 +99,7 @@ class NewBrand(APIView):
         brand_serializer = UserSerializer(data=request.data)
         if brand_serializer.is_valid():
             brand_email = brand_serializer.validated_data['email']
-            if not Users.objects.filter(email=brand_email).exists():
+            if not CustomUser.objects.filter(email=brand_email).exists():
                 brand_serializer.save()
                 return Response(brand_email.data, status=status.HTTP_201_CREATED)
             return Response(brand_email.errors, status=status.HTTP_409_CONFLICT)
