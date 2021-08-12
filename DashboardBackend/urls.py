@@ -18,17 +18,20 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from Views.Creator import creator_views
 from Views.Brand import brand_views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('creator/<int:pk>/', creator_views.CreatorDetails.as_view()),
-    path('creator-ad-card/new', creator_views.CreatorMarketplace.as_view()),
-    path('creator-ad-card/<int:creator_user_id>', creator_views.CreatorMarketplace.as_view()),
-    path('creator-ad-card/<int:pk>/delete', creator_views.CreatorMarketplace.as_view()),
-    path('new-creator/', creator_views.NewCreator.as_view()),
+    path('new/invitation-code/', creator_views.CreateInvitationCode.as_view()),
+    path('creator/<int:pk>/', creator_views.CreatorProfile.as_view()),
+    path('creator-ad-card/new/', creator_views.CreatorMarketplace.as_view()),
+    path('creator-ad-card/<int:creator_user_id>/', creator_views.CreatorMarketplace.as_view()),
+    path('creator-ad-card/<int:pk>/delete/', creator_views.CreatorMarketplace.as_view()),
+    path('new-creator/<str:invitation_code>/', creator_views.NewCreator.as_view()),
     path('new-brand-card/', brand_views.BrandAdCards.as_view()),
     path('brand-ad-cards/', brand_views.BrandAdCardsList.as_view()),
-    path('login/', creator_views.LoginCreator.as_view()),
+    path('login/', obtain_auth_token)
+    #path('login/', creator_views.LoginCreator.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

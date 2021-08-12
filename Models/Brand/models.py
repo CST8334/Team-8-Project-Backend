@@ -1,6 +1,6 @@
 from django.db import models
 from Models.Creator.models import CreatorCampaign
-from Models.Users.models import Users
+from Users.models import CustomUser
 
 
 class BrandOrganization(models.Model):
@@ -27,10 +27,10 @@ class BrandAdCard(models.Model):
     description = models.TextField()
     brand_organization = models.ForeignKey(BrandOrganization, on_delete=models.DO_NOTHING,
                                            related_name='b_org_id')  # foreign key from BrandOrganization
-    brand_user = models.ForeignKey(Users, on_delete=models.CASCADE, null=False, related_name='b_user_fk') # foreign key from Users
+    brand_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, related_name='b_user_fk') # foreign key from Users
     creator_campaign = models.ForeignKey(CreatorCampaign, on_delete=models.CASCADE, blank=True, null=True,
                                          related_name='c_campaign_fk')  # Foreign key to CreatorCampaign
-    creator_user = models.ForeignKey(Users, on_delete=models.CASCADE, blank=True, null=True, related_name='c_user_b_ad_fk') # foreign key from Users
+    creator_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True, null=True, related_name='c_user_b_ad_fk') # foreign key from Users
     brand_campaign = models.ForeignKey(BrandCampaign, on_delete=models.CASCADE,
                                        related_name='b_campaign_fk')  # Foreign key to BrandCampaign
 
