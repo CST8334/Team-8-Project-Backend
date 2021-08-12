@@ -7,7 +7,6 @@ from Users.serializers import UserSerializer
 from Users.models import CustomUser
 from Users.models import UserInvitation
 from django.http import response
-import uuid
 from rest_framework.authtoken.models import Token
 
 
@@ -24,21 +23,6 @@ class CreatorMarketplace(APIView):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-    def get_creator_ad_card(self, creator_user_id):
-        """
-        Helper method to find a creator ad card by foreign key
-
-        Attributes
-        ----------
-        creator_ad_card : CreatorAdCard
-            The creator ad card found by foreign key "creator_user_id"
-        """
-        try:
-            creator_ad_card = CreatorAdCard.objects.get(creator_user_id=creator_user_id)
-            return creator_ad_card
-        except CreatorAdCard.DoesNotExist:
-            raise Http404
-
     def get(self, request, creator_user_id):
         """
         Returns a creator ad card found by foreign key
@@ -50,10 +34,8 @@ class CreatorMarketplace(APIView):
         serializer : CreatorAdCardSerializer
             Used to convert the creator ad card object in JSON to be returned by the response
         """
-        creator_ad = self.get_creator_ad_card(creator_user_id)
-        # Would need to set many = True in the serializer to return multiple ad cards with one call.
-        # ad_cards = creator_ad.b_user_id_fk.all()
-        serializer = CreatorAdCardSerializer(creator_ad)
+        creator_ad_card = CreatorAdCard.objects.all().filter(creator_user=creator_user_id)
+        serializer = CreatorAdCardSerializer(creator_ad_card, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):

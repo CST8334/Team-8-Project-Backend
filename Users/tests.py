@@ -2,6 +2,10 @@ from django.test import TestCase
 from Users.models import CustomUser
 from Users.models import UserInvitation
 
+"""
+Model test cases
+"""
+
 
 class CustomUserModelTest(TestCase):
     @classmethod
@@ -111,3 +115,8 @@ class UserInvitationModelTest(TestCase):
         invitation_code = UserInvitation.objects.get(id=1)
         max_length = invitation_code._meta.get_field('invitation_code').max_length
         self.assertEqual(max_length, 25)
+
+
+"""
+View test cases
+"""
