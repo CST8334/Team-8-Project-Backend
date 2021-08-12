@@ -10,7 +10,7 @@ class CreatorProductRequestSerializer(serializers.ModelSerializer):
         model = CreatorProductRequest
         fields = [
             'pk',
-            'creator_user_id',
+            'creator_user',
             'request_type',
             'creation_time',
         ]
@@ -21,8 +21,8 @@ class CreatorReferralInvitationSerializer(serializers.ModelSerializer):
         model = CreatorReferralInvitation
         fields = [
             'pk',
-            'inviting_creator_id',
-            'invitee_creator_id',
+            'inviting_creator',
+            'invitee_creator',
             'invitee_creator_email',
             'creation_time'
         ]
@@ -45,10 +45,10 @@ class CreatorAdCardSerializer(serializers.ModelSerializer):
         model = CreatorAdCard
         fields = [
             'pk',
-            'creator_user_id',
-            'brand_user_id',
-            'brand_campaign_id',
-            'creator_campaign_id',
+            'creator_user',
+            'brand_user',
+            'brand_campaign',
+            'creator_campaign',
             'state',
             'price',
             'platform',

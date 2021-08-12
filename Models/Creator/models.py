@@ -38,3 +38,6 @@ class CreatorAdCard(models.Model):
     dreamwell_rejection_time = models.DateField(null=True, blank=True)
     completion_time = models.DateField(null=True, blank=True)
     description = models.TextField()
+
+    def save(self, *args, **kwargs):
+        return super(CreatorAdCard, self).save(*args, **kwargs)
