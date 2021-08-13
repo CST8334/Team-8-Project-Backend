@@ -4,6 +4,12 @@ from django.urls import reverse
 from Models.Creator.models import CreatorCampaign, CreatorAdCard
 from Users.models import CustomUser
 
+"""
+Author: Nathen White
+File: test_creator_view.py
+Description: Ensure viewpoints that manipulate creator models works as expected
+"""
+
 
 class CreatorViewTest(TestCase):
     @classmethod

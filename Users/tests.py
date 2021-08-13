@@ -3,7 +3,9 @@ from Users.models import CustomUser
 from Users.models import UserInvitation
 
 """
-Model test cases
+Author: Nathen White
+File: tests.py
+Description: Test the custom user account models
 """
 
 
@@ -39,11 +41,6 @@ class CustomUserModelTest(TestCase):
         user = CustomUser.objects.get(id=1)
         field_label = user._meta.get_field('user_role').verbose_name
         self.assertEqual(field_label, 'user role')
-
-    def test_description_label(self):
-        user = CustomUser.objects.get(id=1)
-        field_label = user._meta.get_field('description').verbose_name
-        self.assertEqual(field_label, 'description')
 
     def test_description_label(self):
         user = CustomUser.objects.get(id=1)
@@ -115,8 +112,3 @@ class UserInvitationModelTest(TestCase):
         invitation_code = UserInvitation.objects.get(id=1)
         max_length = invitation_code._meta.get_field('invitation_code').max_length
         self.assertEqual(max_length, 25)
-
-
-"""
-View test cases
-"""

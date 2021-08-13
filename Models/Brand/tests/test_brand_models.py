@@ -1,8 +1,24 @@
 from django.test import TestCase
 from Models.Brand.models import *
 
+"""
+Author: Nathen White
+File: test_brand_models.py
+Description: Unit tests of brand model fields
+"""
+
 
 class BrandCampaignModelTest(TestCase):
+    """
+    Test brand campaign models
+
+    Methods
+    -------
+    test_state_label()
+    test_creation_time_label()
+    test_completion_time_label()
+    test_description_label()
+    """
     @classmethod
     def setUpTestData(cls):
         BrandCampaign.objects.create(state="active", completion_time="2022-01-29",
@@ -30,6 +46,14 @@ class BrandCampaignModelTest(TestCase):
 
 
 class BrandOrganizationModelTest(TestCase):
+    """
+    Test brand organization models
+
+    Methods
+    -------
+    test_creation_time_label()
+    test_description_label()
+    """
     @classmethod
     def setUpTestData(cls):
         BrandOrganization.objects.create(description="This is a test brand organization model")
@@ -46,6 +70,26 @@ class BrandOrganizationModelTest(TestCase):
 
 
 class BrandAdCardModelTest(TestCase):
+    """
+    Test brand ad card models
+
+    Methods
+    -------
+    test_state_label()
+    test_price_label()
+    test_platform_label()
+    test_execution_deadline_label()
+    test_creation_time_label()
+    test_dreamwell_approval_time_label()
+    test_dreamwell_rejection_time_label()
+    test_completion_time_label()
+    test_description_label()
+    test_brand_organization_label()
+    test_brand_user_label()
+    test_creator_campaign_label()
+    test_creator_user_label()
+    test_brand_campaign_label()
+    """
     @classmethod
     def setUpTestData(cls):
         BrandOrganization.objects.create(description="Brand organization")

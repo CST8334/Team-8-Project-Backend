@@ -2,8 +2,23 @@ from django.test import TestCase
 from Models.Brand.models import *
 from Models.Organization.models import *
 
+"""
+Author: Nathen White
+File: test_organization_models.py
+Description: Unit tests of organization model fields
+"""
+
 
 class OrganizationMembershipModelTest(TestCase):
+    """
+    Test organization membership models
+
+    Methods
+    -------
+    test_user_label()
+    test_organization_label()
+    test_description_label()
+    """
     @classmethod
     def setUpTestData(cls):
         CustomUser.objects.create(user_type="Creator", email="test@tmail.com", password="testPass", organization_id=123,

@@ -2,8 +2,23 @@ from django.test import TestCase
 from Models.Creator.models import *
 from Users.models import CustomUser as Users
 
+"""
+Author: Nathen White
+File: test_creator_models.py
+Description: Unit tests of creator model fields
+"""
+
 
 class CreatorProductRequestModelTest(TestCase):
+    """
+    Tests creator product request models
+
+    Methods
+    -------
+    test_creator_user_label()
+    test_request_type_label()
+    test_creation_time_label()
+    """
     @classmethod
     def setUpTestData(cls):
         CustomUser.objects.create(user_type="Creator", email="test@tmail.com", password="testPass", organization_id=123,
@@ -29,6 +44,16 @@ class CreatorProductRequestModelTest(TestCase):
 
 
 class CreatorReferralInvitationModelTest(TestCase):
+    """
+    Tests creator referral invitation models
+
+    Methods
+    -------
+    test_inviting_creator_label()
+    test_invitee_creator_label()
+    test_invitee_creator_email_label()
+    test_creation_time_label()
+    """
     @classmethod
     def setUpTestData(cls):
         Users.objects.create(user_type="CreatorA", email="testA@tmail.com", password="testAPass", organization_id=123,
@@ -65,6 +90,16 @@ class CreatorReferralInvitationModelTest(TestCase):
 
 
 class CreatorCampaignModelTest(TestCase):
+    """
+    Tests creator campaign models
+
+    Methods
+    -------
+    test_state_label()
+    test_creation_time_label()
+    test_completion_time_label()
+    test_description_label()
+    """
     @classmethod
     def setUpTestData(cls):
         CreatorCampaign.objects.create(state="active", completion_time="2022-01-29",
@@ -92,6 +127,25 @@ class CreatorCampaignModelTest(TestCase):
 
 
 class CreatorAdCardModelTest(TestCase):
+    """
+    Tests creator ad card models
+
+    Methods
+    -------
+    test_creator_user_label()
+    test_brand_user_label()
+    test_brand_campaign_label()
+    test_creator_campaign_label()
+    test_state_label()
+    test_price_label()
+    test_platform_label()
+    test_execution_deadline_label()
+    test_creation_time_label()
+    test_dreamwell_approval_time_label()
+    test_dreamwell_rejection_time_label()
+    test_completion_time_label()
+    test_description_label()
+    """
     @classmethod
     def setUpTestData(cls):
         CustomUser.objects.create(user_type="CreatorA", email="testA@tmail.com", password="testAPass",

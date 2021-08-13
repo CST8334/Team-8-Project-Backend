@@ -1,6 +1,12 @@
 from django.db import models
 from Users.models import CustomUser
 
+"""
+Author: Nathen White
+File: models.py
+Description: Creator models
+"""
+
 
 class CreatorProductRequest(models.Model):
     creator_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='c_user_fk')  # Foreign key of users table primary key

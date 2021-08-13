@@ -2,6 +2,12 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 import uuid
 
+"""
+Author: Nathen White
+File: admin.py
+Description: The custom manager overrides the default user manager
+"""
+
 
 class CustomUserManager(BaseUserManager):
     """

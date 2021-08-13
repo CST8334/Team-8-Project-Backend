@@ -9,6 +9,12 @@ from Users.models import UserInvitation
 from django.http import response
 from rest_framework.authtoken.models import Token
 
+"""
+Author: Nathen White
+File: creator_views.py
+Description: Access creator models by an endpoint via a view
+"""
+
 
 class CreatorMarketplace(APIView):
     """

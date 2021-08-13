@@ -4,6 +4,12 @@ from .models import CreatorReferralInvitation
 from .models import CreatorCampaign
 from .models import CreatorAdCard
 
+"""
+Author: Nathen White
+File: serializers.py
+Description: Creator serializers
+"""
+
 
 class CreatorProductRequestSerializer(serializers.ModelSerializer):
     class Meta:

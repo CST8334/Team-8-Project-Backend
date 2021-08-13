@@ -11,6 +11,12 @@ from Models.Brand.models import BrandAdCard
 from .models import UserInvitation
 from Models.Organization.models import OrganizationMembership
 
+"""
+Author: Nathen White
+File: admin.py
+Description: The CustomUserAdmin class controls what information can be seen from the admin panel
+"""
+
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser

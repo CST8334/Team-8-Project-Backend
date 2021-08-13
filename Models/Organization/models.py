@@ -1,6 +1,12 @@
 from django.db import models
 from Users.models import CustomUser
 
+"""
+Author: Nathen White
+File: models.py
+Description: Organization models
+"""
+
 
 class OrganizationMembership(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_id_fk')  # foreign key from users table

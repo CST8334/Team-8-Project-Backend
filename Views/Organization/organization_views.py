@@ -4,6 +4,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from Models.Organization.serializers import *
 
+"""
+Author: Nathen White
+File: organization_views.py
+Description: Access organization models by an endpoint via a view
+"""
+
 
 class OOMOrganizationMemberhsip(APIView):
     """

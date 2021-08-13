@@ -7,8 +7,17 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from .managers import CustomUserManager
 
+"""
+Author: Nathen White
+File: models.py
+Description: The creator and brand custom user model
+"""
+
 
 class CustomUser(AbstractUser):
+    """
+    The custom user model for creator and brand accounts
+    """
     username = None
     email = models.EmailField(_('email address'), unique=True)
     user_type = models.CharField(max_length=255, null=False, blank=False)
@@ -41,5 +50,8 @@ class CustomUser(AbstractUser):
 
 
 class UserInvitation(models.Model):
+    """
+    User invitation codes
+    """
     invitation_code = models.CharField(max_length=25, null=False, blank=False)
     is_used = models.BooleanField(default=False)

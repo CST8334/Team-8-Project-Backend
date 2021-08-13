@@ -2,6 +2,12 @@ from django.db import models
 from Models.Creator.models import CreatorCampaign
 from Users.models import CustomUser
 
+"""
+Author: Nathen White
+File: models.py
+Description: Brand models
+"""
+
 
 class BrandOrganization(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True)

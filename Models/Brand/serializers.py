@@ -3,6 +3,12 @@ from .models import BrandCampaign
 from .models import BrandOrganization
 from .models import BrandAdCard
 
+"""
+Author: Nathen White
+File: serializers.py
+Description: Brand serializers
+"""
+
 
 class BrandCampaignSerializer(serializers.ModelSerializer):
     class Meta:

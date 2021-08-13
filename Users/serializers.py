@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from .models import CustomUser
 
+"""
+Author: Nathen White
+File: serializers.py
+Description: Custom user model serializer
+"""
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
