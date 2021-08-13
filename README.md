@@ -21,3 +21,13 @@ Alternatively, start the server with a different port number.
 "python manage.py runserver port#here"
 
 To close down the server, from the terminal "ctrl + c"
+
+Admin
+--------------------------
+To create a new superuser enter in the terminal
+
+"python manage.py createsuperuser"
+
+and follow the instructions. The new account will be of type admin and staff.
+
+It would be a good idea to scrub the database as well to remove any current accounts that might be leftover from initial development.
